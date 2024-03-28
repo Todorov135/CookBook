@@ -16,12 +16,14 @@
         private readonly AppDbContext _db;
         private readonly UserManager<AppUser> _userManager;
         private readonly IUserFactory _userFactory;
+        private readonly IJWTToken _jwtToken;
                 
-        public AuthService(AppDbContext db, UserManager<AppUser> userManager, IUserFactory userFactory)
+        public AuthService(AppDbContext db, UserManager<AppUser> userManager, IUserFactory userFactory, IJWTToken jwtToken)
         {
             _db = db;
             _userManager = userManager;
             _userFactory = userFactory;
+            _jwtToken = jwtToken;
         }
         public async Task<Responce<ILoginResponce>> Login(ILogin loginDto)
         {
@@ -38,10 +40,8 @@
 
                     return responce;
                 }
-
-                responce.Data = string.IsNullOrWhiteSpace(user.PhoneNumber) ? 
-                                _userFactory.CreateLoginResponce(user.FirstName, "token", user.Email) : 
-                                _userFactory.CreateLoginResponce(user.FirstName, "token", user.Email, user.PhoneNumber);
+                var token = _jwtToken.CreateToken(user);
+                responce.Data = _userFactory.CreateLoginResponce(user.FirstName, token);
             }
             catch (Exception m)
             {

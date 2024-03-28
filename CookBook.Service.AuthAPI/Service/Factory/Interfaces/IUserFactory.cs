@@ -4,7 +4,6 @@
 
     public interface IUserFactory
     {
-        public ILoginResponce CreateLoginResponce(string name, string token, string email);
-        public ILoginResponce CreateLoginResponce(string name, string token, string email, string phoneNumber);
+        public ILoginResponce CreateLoginResponce(string name, string token);
     }
 }

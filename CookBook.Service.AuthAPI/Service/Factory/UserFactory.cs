@@ -6,13 +6,9 @@
 
     public class UserFactory : IUserFactory
     {
-        public ILoginResponce CreateLoginResponce(string name, string token, string email)
+        public ILoginResponce CreateLoginResponce(string name, string token)
         {
-            return new LoginResponce(name, token, email);
-        }
-        public ILoginResponce CreateLoginResponce(string name, string token, string email, string phoneNumber)
-        {
-            return new LoginResponce(name, token, email, phoneNumber);
+            return new LoginResponce(name, token);
         }
     }
 }
