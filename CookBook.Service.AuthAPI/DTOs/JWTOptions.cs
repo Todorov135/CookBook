@@ -2,8 +2,8 @@
 {
     public class JWTOptions
     {
-        public string SecurityKey { get;}
-        public string Issuer { get;}
-        public string Audience { get; }
+        public string SecurityKey { get; set; }
+        public string Issuer { get; set; }
+        public string Audience { get; set; }
     }
 }

@@ -50,5 +50,10 @@
 
             return responce;
         }
+
+        public Task<bool> Register(ILogin loginDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

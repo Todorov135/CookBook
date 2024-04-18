@@ -38,7 +38,7 @@ namespace CookBook.Service.AuthAPI
             builder.Services.AddScoped<IAuthService,AuthService>();
             builder.Services.AddScoped<IUserFactory, UserFactory>();
             builder.Services.AddScoped<IJWTToken, JWTToken>();
-            builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection("JWT"));
+            builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection("JWTOptions"));
             builder.Services.AddAuthentication(opt =>
             {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -4,6 +4,7 @@ using CookBook.Service.AuthAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CookBook.Service.AuthAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240418103445_AddUser")]
+    partial class AddUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,16 +104,16 @@ namespace CookBook.Service.AuthAPI.Migrations
                         {
                             Id = "027c4f2c-9189-480e-9d2c-a5ba0bcf24e1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "449205a7-0b8c-4971-a1d5-53b0f38bce48",
+                            ConcurrencyStamp = "c4941022-4418-41f0-8564-64158e7e95d7",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
                             LastName = "LastAdminName",
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBR8hGMQjLc5v3ogIlzG4AVFWZpYheATd9PMNPub/IfExGEgkhOLiQaO3hHGFMdEcA==",
+                            PasswordHash = "uEcrlSXriPvF1BXcwjoCkjQ1gOY/j4Kl9Jk+cD0nEs0=",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5cd18bd0-2ace-40fa-a352-122cfdde10ed",
+                            SecurityStamp = "47b11b26-ffc2-47fb-a4df-50b21373736f",
                             TwoFactorEnabled = false
                         });
                 });
