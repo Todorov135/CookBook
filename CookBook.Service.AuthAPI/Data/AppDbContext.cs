@@ -1,11 +1,9 @@
 ﻿namespace CookBook.Service.AuthAPI.Data
 {
     using CookBook.Service.AuthAPI.Data.Models;
-    using Microsoft.AspNetCore.Cryptography.KeyDerivation;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
-    using System.Security.Cryptography;
 
     public class AppDbContext : IdentityDbContext<AppUser>
     {
@@ -13,6 +11,7 @@
         {
             
         }
+        public DbSet<AppUser> AppUsers { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             string password = "Admin123!";

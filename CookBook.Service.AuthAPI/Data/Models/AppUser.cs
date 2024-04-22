@@ -4,17 +4,25 @@
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using static CookBook.Service.AuthAPI.ModelsAnnotations.ModelsAnnotations.AppUserAnnotation;
+    using static CookBook.Service.AuthAPI.Utility.ModelsAnnotations.ModelsAnnotations.AppUser;
 
     public class AppUser : IdentityUser, IAppUser
     {
+        private string _firstName = null!;
+        private string _lastName = null!;
+
         [StringLength(FirstNameMaxLength)]
-        public string FirstName { get; set; } = null!;
+        public string FirstName { get => _firstName; set => _firstName = value; }
 
         [StringLength(LastNameMaxLength)]
-        public string LastName { get; set; } = null!;
+        public string LastName { get => _lastName; set => _lastName = value; }
 
-        [NotMapped]
-        public string FullName => $"{FirstName} {LastName}";
+        public void SetUserInfo(string firstName, string lastName, string email)
+        {
+            this._firstName = firstName;
+            this._lastName = lastName;
+            base.Email = email;
+            base.UserName = email;
+        }
     }
 }

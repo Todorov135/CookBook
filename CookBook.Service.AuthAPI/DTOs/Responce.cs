@@ -18,5 +18,12 @@
         {
             return new Responce<T>();
         }
+        public void AddMultipleErrors(IEnumerable<string> errors)
+        {
+            foreach (string error in errors)
+            {
+                this.Errors.Add(error);
+            }
+        }
     }
 }

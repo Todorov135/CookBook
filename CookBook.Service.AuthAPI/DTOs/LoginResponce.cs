@@ -22,7 +22,7 @@
             {
                 _name = value;
             }
-        } 
+        }
         public string Token 
         { 
             get

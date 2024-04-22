@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Threading.Tasks;
-    using static CookBook.Service.AuthAPI.Utility.ErrorMessage;
+    using static CookBook.Service.AuthAPI.Utility.Error.ErrorMessage;
 
     public class AuthService : IAuthService
     {
@@ -27,7 +27,7 @@
         }
         public async Task<Responce<ILoginResponce>> Login(ILogin loginDto)
         {
-            Responce<ILoginResponce> responce = Responce<ILoginResponce>.CreateInstance();
+            var responce = Responce<ILoginResponce>.CreateInstance();
 
             try
             {
@@ -51,9 +51,40 @@
             return responce;
         }
 
-        public Task<bool> Register(ILogin loginDto)
+        public async Task<Responce<bool>> Register(IRegister registerDto)
         {
-            throw new NotImplementedException();
+            var responce = Responce<bool>.CreateInstance();
+            try
+            {
+                var user = (AppUser?)_userFactory.CreateUser(typeof(AppUser));
+
+                user.SetUserInfo(registerDto.FirstName, registerDto.LastName, registerDto.Email);
+
+                var checkForExistingUser = await _userManager.FindByEmailAsync(registerDto.Email);
+                if (checkForExistingUser != null)
+                {
+                    responce.Errors.Add(string.Format(ЕxistingUser, registerDto.Email));
+
+                    return responce;
+                }
+
+                var result = await _userManager.CreateAsync(user, registerDto.Password);
+
+                if (!result.Succeeded)
+                {
+                   responce.AddMultipleErrors(result.Errors.Select(x => x.Description));
+
+                    return responce;
+                }
+
+                return responce;
+            }
+            catch (Exception e)
+            {
+                responce.Errors.Add(e.Message);
+
+                return responce;
+            }
         }
     }
 }

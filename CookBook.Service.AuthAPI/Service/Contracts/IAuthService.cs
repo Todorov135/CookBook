@@ -6,6 +6,6 @@
     public interface IAuthService
     {
         public Task<Responce<ILoginResponce>> Login(ILogin loginDto);
-        public Task<bool> Register(ILogin loginDto);
+        public Task<Responce<bool>> Register(IRegister registerDto);
     }
 }

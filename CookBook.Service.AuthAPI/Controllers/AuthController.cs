@@ -24,5 +24,19 @@
             }
             return Ok(responce.Data);
         }
+
+        [HttpPost]
+        [Route("/register")]
+        public async Task<IActionResult> Register([FromBody]RegisterDto registerDto)
+        {
+            var responce = await _authService.Register(registerDto);
+
+            if (!responce.IsSuccess)
+            {
+                return BadRequest(responce.Errors);
+            }
+
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,3 @@
-
 namespace CookBook.Service.AuthAPI
 {
     using CookBook.Service.AuthAPI.Data;
@@ -9,11 +8,11 @@ namespace CookBook.Service.AuthAPI
     using CookBook.Service.AuthAPI.Service.Factory;
     using CookBook.Service.AuthAPI.Service.Factory.Interfaces;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
-    using static ModelsAnnotations.ModelsAnnotations.AppUserAnnotation;
 
     public class Program
     {
@@ -26,10 +25,8 @@ namespace CookBook.Service.AuthAPI
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultString"));
             });
 
-            builder.Services.AddIdentityCore<AppUser>(option =>
-            {
-                option.Password.RequiredLength = PasswordMinLength;
-                option.Password.RequiredUniqueChars = 0;
+            builder.Services.AddIdentity<AppUser, IdentityRole>(option =>
+            {                
                 option.Password.RequireNonAlphanumeric = false;
                 option.Password.RequireUppercase = false;
             })

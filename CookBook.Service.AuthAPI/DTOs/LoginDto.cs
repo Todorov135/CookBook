@@ -2,7 +2,7 @@
 {
     using CookBook.Service.AuthAPI.DTOs.Contracts;
     using System.ComponentModel.DataAnnotations;
-    using static ModelsAnnotations.ModelsAnnotations.AppUserAnnotation;
+    using static CookBook.Service.AuthAPI.Utility.ModelsAnnotations.ModelsAnnotations.AppUser;
 
     public class LoginDto : ILogin
     {
