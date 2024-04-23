@@ -1,18 +1,7 @@
 namespace CookBook.Service.AuthAPI
 {
-    using CookBook.Service.AuthAPI.Data;
-    using CookBook.Service.AuthAPI.Data.Models;
-    using CookBook.Service.AuthAPI.DTOs;
-    using CookBook.Service.AuthAPI.Service;
-    using CookBook.Service.AuthAPI.Service.Contracts;
-    using CookBook.Service.AuthAPI.Service.Factory;
-    using CookBook.Service.AuthAPI.Service.Factory.Interfaces;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
+    using CookBook.Service.AuthAPI.Extensions;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.IdentityModel.Tokens;
-    using System.Text;
 
     public class Program
     {
@@ -20,40 +9,9 @@ namespace CookBook.Service.AuthAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<AppDbContext>(option =>
-            {
-                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultString"));
-            });
-
-            builder.Services.AddIdentity<AppUser, IdentityRole>(option =>
-            {                
-                option.Password.RequireNonAlphanumeric = false;
-                option.Password.RequireUppercase = false;
-            })
-                .AddEntityFrameworkStores<AppDbContext>();
-
-            builder.Services.AddScoped<IAuthService,AuthService>();
-            builder.Services.AddScoped<IUserFactory, UserFactory>();
-            builder.Services.AddScoped<IJWTToken, JWTToken>();
-            builder.Services.Configure<JWTOptions>(builder.Configuration.GetSection("JWTOptions"));
-            builder.Services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-                .AddJwtBearer(option =>
-                {
-                    option.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = "https://localhost:7034",
-                        ValidAudience = "https://localhost:7034",
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("superSecretKey@345"))
-                    };
-                });
+            builder.Services.AddDbContextConfiguration(builder.Configuration);
+            builder.Services.AddServices();
+            builder.Services.AddJWTAuthentication(builder.Configuration);
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -61,7 +19,6 @@ namespace CookBook.Service.AuthAPI
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -71,7 +28,6 @@ namespace CookBook.Service.AuthAPI
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

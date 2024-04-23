@@ -3,7 +3,6 @@
     using CookBook.Service.AuthAPI.Data.Models.Contracts;
     using Microsoft.AspNetCore.Identity;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using static CookBook.Service.AuthAPI.Utility.ModelsAnnotations.ModelsAnnotations.AppUser;
 
     public class AppUser : IdentityUser, IAppUser
