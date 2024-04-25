@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{EE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Service.AuthAPI", "CookBook.Service.AuthAPI\CookBook.Service.AuthAPI.csproj", "{AF1E825B-B27F-4975-9F3A-363D6D0B26D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Api", "CookBook.Api\CookBook.Api.csproj", "{61AF8911-880D-4236-82A3-3BA0CF9311BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CookBook.Api", "CookBook.Api\CookBook.Api.csproj", "{61AF8911-880D-4236-82A3-3BA0CF9311BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookBook.Service.Recipe", "CookBook.Service.Recipe\CookBook.Service.Recipe.csproj", "{8350C825-B1CC-4BEE-9B15-6F1CEDED9BF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{61AF8911-880D-4236-82A3-3BA0CF9311BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61AF8911-880D-4236-82A3-3BA0CF9311BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61AF8911-880D-4236-82A3-3BA0CF9311BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8350C825-B1CC-4BEE-9B15-6F1CEDED9BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8350C825-B1CC-4BEE-9B15-6F1CEDED9BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8350C825-B1CC-4BEE-9B15-6F1CEDED9BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8350C825-B1CC-4BEE-9B15-6F1CEDED9BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -33,6 +39,7 @@ Global
 		{EEB23ED4-B52B-427D-908D-0CF301DBB68E} = {75D7F440-5D51-41D5-9C03-C32CE000B78E}
 		{AF1E825B-B27F-4975-9F3A-363D6D0B26D6} = {EEB23ED4-B52B-427D-908D-0CF301DBB68E}
 		{61AF8911-880D-4236-82A3-3BA0CF9311BD} = {75D7F440-5D51-41D5-9C03-C32CE000B78E}
+		{8350C825-B1CC-4BEE-9B15-6F1CEDED9BF0} = {EEB23ED4-B52B-427D-908D-0CF301DBB68E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {41875EC8-A0B7-467C-897D-A2B3898F64A0}

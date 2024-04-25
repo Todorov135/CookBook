@@ -1,0 +1,6 @@
+@CookBook.Service.Recipe_HostAddress = http://localhost:5141
+
+GET {{CookBook.Service.Recipe_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
